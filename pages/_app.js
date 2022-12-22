@@ -1,19 +1,17 @@
-import '../styles/globals.css';
-import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/react';
-
-const clientSideEmotionCache = createCache({ key: 'css' });
-
-function MyApp({
-  Component,
-  pageProps,
-  emotionCache = clientSideEmotionCache,
-}) {
+import React from 'react'
+import { Layout } from '../components';
+import '../styles/globals.css'
+import { Toaster } from 'react-hot-toast';
+import { StateContext } from '../context/StateContext';
+function MyApp({ Component , pageProps}){
   return (
-    <CacheProvider value={emotionCache}>
+    <StateContext>
+      <Layout>
+        <Toaster/>
       <Component {...pageProps} />
-    </CacheProvider>
-  );
+    </Layout>
+    </StateContext>
+  )
 }
-
-export default MyApp;
+   
+export default MyApp
